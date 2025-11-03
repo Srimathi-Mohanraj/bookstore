@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "fix-images": "node fiximages.js"
+     
   },
   "dependencies": {
     "cors": "^2.8.5",
