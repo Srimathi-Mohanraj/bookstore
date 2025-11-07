@@ -11,12 +11,32 @@ const ordersRouter = require('./routes/orders');
 const app = express();
 app.use(express.json());
 
-const FRONTEND = process.env.FRONTEND_URL || 'http://localhost:3000';
-app.use(cors({
-  origin: FRONTEND,
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-}));
 
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
+
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      
+      return callback(new Error('CORS policy: This origin is not allowed — ' + origin), false);
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+// apply CORS
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 
@@ -24,10 +44,17 @@ app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 if (booksRouter) app.use('/api/books', booksRouter);
 if (ordersRouter) app.use('/api/orders', ordersRouter);
 
-
 app.get('/', (req, res) => res.send('Server is running'));
 
-// Start server after DB connection
+
+app.use((err, req, res, next) => {
+  if (err && /CORS policy/.test(err.message)) {
+    return res.status(403).json({ error: err.message });
+  }
+  next(err);
+});
+
+// start server after connecting to DB
 const PORT = process.env.PORT || 5000;
 const MONGO = process.env.MONGODB_URI;
 
