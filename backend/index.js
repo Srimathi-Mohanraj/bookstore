@@ -12,23 +12,27 @@ const app = express();
 app.use(express.json());
 
 
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+const envAllowed = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
   .map(s => s.trim())
   .filter(Boolean);
 
+  function isVercelOrigin(origin) {
+  try {
+    return origin && origin.endsWith('.vercel.app');
+  } catch { return false; }
+}
+
 
 const corsOptions = {
   origin: function(origin, callback) {
-   
+    
     if (!origin) return callback(null, true);
 
-  
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
+    if (envAllowed.includes(origin)) return callback(null, true);
 
-    
+    if (isVercelOrigin(origin)) return callback(null, true);
+    console.warn('CORS blocked origin:', origin);
     return callback(null, false);
   },
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
