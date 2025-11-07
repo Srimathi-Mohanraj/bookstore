@@ -1,24 +1,25 @@
-// src/pages/Books.jsx
+
 import React, { useEffect, useState } from "react";
 import BookCard from "../components/BookCard";
+import api from "../api"; 
 
 export default function Books() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch books from backend API
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/books"); // ✅ your backend endpoint
-        const data = await res.json();
-        setBooks(data);
+   
+        const res = await api.get("/books");
+        setBooks(res.data);
       } catch (err) {
         console.error("Error fetching books:", err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchBooks();
   }, []);
 
