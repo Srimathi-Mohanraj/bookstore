@@ -12,27 +12,30 @@ const app = express();
 app.use(express.json());
 
 
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000')
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
   .map(s => s.trim())
   .filter(Boolean);
 
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    
+  origin: function(origin, callback) {
+   
     if (!origin) return callback(null, true);
+
+  
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
-    } else {
-      
-      return callback(new Error('CORS policy: This origin is not allowed — ' + origin), false);
     }
+
+    
+    return callback(null, false);
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
   credentials: true
 };
+
 
 // apply CORS
 app.use(cors(corsOptions));
