@@ -21,7 +21,7 @@ if(!book) return <div className="p-6">Loading...</div>;
 return (
 <div className="max-w-4xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
 <div className="md:col-span-1">
-<img className="w-full h-auto rounded-lg" src={book.image} alt={book.title} />
+<img className="w-full h-auto rounded-lg" src={`assets/${book.image}`} alt={book.title} />
 </div>
 <div className="md:col-span-2">
 <h1 className="text-2xl font-bold">{book.title}</h1>
