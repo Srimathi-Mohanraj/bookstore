@@ -8,7 +8,7 @@ const books = [
     author: 'J.K. Rowling',
     price: 999,
     description: 'Kids most liked book full of adventure.',
-    image: 'http://localhost:3000/assets/book1.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book1.jpeg',
     featured: true,
     available: true
   },
@@ -17,7 +17,7 @@ const books = [
     author: 'Eric Ries',
     price: 359,
     description: 'How Constant Innovation Creates Radically Successful Businesses.',
-    image: 'http://localhost:3000/assets/book2.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book2.jpeg',
     featured: true,
     available: true
   },
@@ -26,7 +26,7 @@ const books = [
     author: 'Sridhar Seshadri & Shreeram Iyer',
     price: 299,
     description: 'You can deeply understand AI.',
-    image: 'http://localhost:3000/assets/book3.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book3.jpeg',
     featured: true,
     available: true
   },
@@ -35,7 +35,7 @@ const books = [
     author: 'Rithvik Singh',
     price: 214,
     description: 'Learning to be okay with saying goodbye.',
-    image: 'http://localhost:3000/assets/book4.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book4.jpeg',
     featured: true,
     available: true
   },
@@ -44,7 +44,7 @@ const books = [
     author: 'Manav Kaul',
     price: 2345,
     description: 'What really is the true definition of love?',
-    image: 'http://localhost:3000/assets/book5.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book5.jpeg',
     featured: true,
     available: true
   },
@@ -53,7 +53,7 @@ const books = [
     author: 'Megha Majumdar',
     price: 453,
     description: 'Oprah Winfrey’s Book Club Pick | Longlisted for the National Book Award.',
-    image: 'http://localhost:3000/assets/book6.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book6.jpeg',
     featured: true,
     available: true
   },
@@ -62,7 +62,7 @@ const books = [
     author: 'Kiran Desai',
     price: 735,
     description: 'A Diaspora Fiction on Belonging, and Modern Relationships.',
-    image: 'http://localhost:3000/assets/book7.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book7.jpeg',
     featured: true,
     available: true
   },
@@ -71,7 +71,7 @@ const books = [
     author: 'Hwang Bo-reum',
     price: 250,
     description: 'A reflection on the joy and meaning of reading.',
-    image: 'http://localhost:3000/assets/book8.jpeg',
+    image: 'https://bookstore-33co.vercel.app/assets/book8.jpeg',
     featured: true,
     available: true
   }
